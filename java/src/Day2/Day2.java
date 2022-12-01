@@ -1,4 +1,4 @@
-package Template;
+package Day2;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Day2 {
 
     public static List<String> getFileContent(final String fileName) {
         try(var bufferedReader = Files.newBufferedReader(Paths.get(fileName), StandardCharsets.UTF_8)) {
@@ -36,3 +36,4 @@ public class Main {
         System.out.println(part2(intInput));
     }
 }
+
