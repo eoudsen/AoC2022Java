@@ -19,21 +19,40 @@ public class Day4 {
         return null;
     }
 
-    public static Integer part1(final List<Integer> input) {
-
-        return 0;
+    public static Integer part1(final List<String> input) {
+        return input.stream().map(line -> {
+            String[] elfes = line.split(",");
+            String[] elf1 = elfes[0].split("-");
+            String[] elf2 = elfes[1].split("-");
+            if ((Integer.parseInt(elf1[0]) <= Integer.parseInt(elf2[0]) && Integer.parseInt(elf1[1]) >= Integer.parseInt(elf2[1])) || (Integer.parseInt(elf1[0]) >= Integer.parseInt(elf2[0]) && Integer.parseInt(elf1[1]) <= Integer.parseInt(elf2[1]))) {
+                return 1;
+            }
+            return 0;
+        }).reduce(0, Integer::sum);
     }
 
-    public static Integer part2(final List<Integer> input) {
-
-        return 0;
+    public static Integer part2(final List<String> input) {
+        return input.stream().map(line -> {
+            String[] elfes = line.split(",");
+            String[] elf1 = elfes[0].split("-");
+            String[] elf2 = elfes[1].split("-");
+            if ((Integer.parseInt(elf1[0]) <= Integer.parseInt(elf2[0]) && Integer.parseInt(elf1[1]) >= Integer.parseInt(elf2[1])) || (Integer.parseInt(elf1[0]) >= Integer.parseInt(elf2[0]) && Integer.parseInt(elf1[1]) <= Integer.parseInt(elf2[1]))) {
+                return 1;
+            }
+            else if (Integer.parseInt(elf2[0]) <= Integer.parseInt(elf1[0]) && Integer.parseInt(elf1[0]) <= Integer.parseInt(elf2[1])) {
+                return 1;
+            }
+            else if (Integer.parseInt(elf1[0]) <= Integer.parseInt(elf2[0]) && Integer.parseInt(elf2[0]) <= Integer.parseInt(elf1[1])) {
+                return 1;
+            }
+            return 0;
+        }).reduce(0, Integer::sum);
     }
 
     public static void main(String... args) {
         var fileContent = getFileContent("java/src/day4/input.txt");
-        var intInput = fileContent.stream().map(Integer::parseInt).collect(Collectors.toList());
-        System.out.println(part1(intInput));
-        System.out.println(part2(intInput));
+        System.out.println(part1(fileContent)); // 571
+        System.out.println(part2(fileContent)); // 917
     }
 }
 
